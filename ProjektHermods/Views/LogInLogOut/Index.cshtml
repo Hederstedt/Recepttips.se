@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    string loginButton = Request["loginButton"];
+}
+
+
+
+@if (loginButton != null)
+{
+    <h2>Fel användarnamn/lösenord!</h2>
+}
+else
+{
+    <h2>Du är nu utloggad!</h2>
+    <p>Välkommen åter!</p>
+}
+

@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (ViewBag.messageToUserAccountCreated == null)
+{
+
+
+    <h2>Skapa konto</h2>
+
+    if (!(bool)Session["IsLoggedIn"])
+    {
+        <form action="/CreateAccount/Index" method="post">
+            <input class="standardform" type="text" placeholder="Användarnamn" name="nameinput" /><br />
+            <input class="standardform" type="password" placeholder="Lösenord" name="passwordinput" /><br />
+            <input class="standardform" type="password" placeholder="Verifiera Lösenord" name="passwordinput2" /><br />
+            <input class="standardknapp" type="submit" name="createaccountbutton" value="Skapa konto" />
+        </form>
+    }
+    else
+    {
+        <p>Du måste logga ut för att skapa nytt konto!</p>
+    }
+
+
+    if (ViewBag.messageToUser != null)
+    {
+        string message = ViewBag.messageToUser;
+        @message
+    }
+}
+else
+{
+    <h2>Ditt konto är nu skapat <strong><span class="greentext">@Session["username"]</span></strong> !</h2>
+}
+
+<br />
