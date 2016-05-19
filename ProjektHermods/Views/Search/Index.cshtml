@@ -1,0 +1,81 @@
+﻿@model IEnumerable<ProjektHermods.Models.Ingrediens>
+
+@{
+    ViewBag.Title="Receptjakt";
+}
+
+
+
+@*Ser lite förjävligt ut nu men jag rensar upp det.*@
+
+    <div class="jumbotron hidden-xs hidden-xs hidden-m" id="JumboSearch">
+        <h1 style="float:right;" id="JumboSearchText">Välkommen till ReceptTips.se</h1>
+
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12">
+         
+         
+        </div>@*Div id innehåller alla knappar du lägger till i dina ingridienser. dom som inte är selected ligger i nonSelected diven under*@
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 note" style="color:black;">
+            <p class="note-text" style="display:block;visibility:hidden;">Dina Ingredienser</p>
+            <form method="get" action="/SearchResult/Index">
+                <div id="selected">
+
+
+
+
+
+
+
+                </div><input id="btnSubmit" type="submit" name="buttonAdd" value="Sök" />
+            </form>
+                 
+              
+</div>
+        </div>
+    </div>
+
+
+
+    <div class="container ingredients-div">
+        <div class="row margin-top-45">
+            <div class="col-xs-5 col-sm-5 ">
+
+                <label class="control-label">
+                    Skriv in dina ingredienser
+                <br />
+                </label><p style="font-size:10px;">Skriv * för att se alla ingredienser som finns i våra recept</p>
+                @*SearchText är lilla ingrediensrutan folk fyller på. Inte mycket c# kod men ni hittar metoden i SearchControllern.
+                    Har javascript så att om man trycker enter så klickas button.
+                      foreachen nedan lägger till ingredienser.
+                      kött button = öppnar ingredienser, inte bytt namn än, sorry :D*@
+                <div id="nonSelectedT" style="color:black;">
+                    <input type="text" id="SearchText" placeholder="Sök" />
+                    <input type="button" id="addtoNote" onclick="copy()" value="Lägg till" /><br />
+                    <small id="small-error"></small>
+                </div>
+            </div>
+            <div class="col-md-7 col-sm-7 col-xs-7">
+                @using (ReceptTipsContext context = new ReceptTipsContext())
+                {
+                   
+                       
+                             <input type="button" id="Kött-open-button-1" class=" btn-danger Kött-button Kött-open-button-1" value="Ingredienser">
+                            <input type="button" id="Grönsaker-open-button-1" class="btn-danger Grönsaker-open-button-1" value="x">
+                            <div style="display: none" id="nonSelected" class="Kött-div-1 div-1">
+                                @foreach (var item in context.Ingrediens)
+                                {
+                                    @*<button id="btnDanger" data-Id="@item.Name" onclick="moveButton(this)" type="button" class="btn-success" name="ingrediens" value="@item.Name" readonly><img class="ingrediens-bild" src="@item.IngrediensBild" /></button>*@
+                                    <input id="btnDanger" data-Id="@item.Name" onclick="moveButton(this)" type="text" class="btn-success" name="ingrediens" value="@item.Name" readonly />
+                                }
+                            </div>
+                        
+
+                    
+                }
+                 
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   
+    <meta charset="utf-8" />
+    <title>ReceptTips.SE © All Rights Reserved</title>
+    <!-- font-family: 'Great Vibes', cursive; -->
+    <link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
+    
+    <!-- Bootstrap - Meny -->
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" type="text/css">
+    <!-- Bootstrap - Fonts -->
+    <link rel="stylesheet" href="~/Content/creative.css" type="text/css">
+    <!--Bootstrap - awsome fonts-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/main.css" type="text/css">
+    <!-- Bootstrap - "Flyt"-metoder -->
+    <script src="~/scripts/jquery.js"></script>
+    <!-- Bootstrap - "ÖppnaKnapp"-event -->
+    <script src="~/scripts/bootstrap.min.js"></script>
+    <!-- Bootstrap - "StängaKnapp"-event -->
+    <script src="~/scripts/jquery.easing.min.js"></script>
+    <!-- Bootstrap - Text-anpassning -->
+    <script src="~/scripts/jquery.fittext.js"></script>
+    <!--Autocomplete etc-->
+  
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+ 
+    <!-- Bootstrap - Mobilanpassad -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body id="page-top">
+    <header>
+        <!-- Bootstrap-MENY -->
+        <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <!-- Mobilknapp-->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="logga"><a href="#page-top"><img src="~/img/logga.png" alt="Logga" /></a></div>
+                </div>
+                <!-- Länkar -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <ul class="nav navbar-nav navbar-right" style="margin-right:1%;">
+                                <li>
+                                    @if ((bool)Session["IsLoggedIn"] == false)
+                                    {
+                                        <form action="/LogInLogOut/Index" method="post" >
+                                            <input class="formInMeny" name="loginname" type="text" placeholder="Användarnamn" />
+                                            <input class="formInMeny" name="loginpassword" type="password" placeholder="Lösenord" />
+                                            <input class="menyButton" type="submit" name="loginButton" value="Logga in" />
+                                        </form>
+                                    }
+                                </li>
+                                @if ((bool)Session["IsLoggedIn"])
+                                {
+                                    <li>
+                                        Inloggad som: <span class="greentext"><strong>@Session["username"]</strong></span>
+                                        <form style="display: inline;" action="/LogInLogOut/Index" method="post">
+                                            <input class="menyButton" type="submit" name="logoutButton" value="Logga ut" />
+                                        </form>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="row">
+                            <ul class="nav navbar-nav navbar-right">
+                                    <!--Enkel kontrol av så att Adminknappen syns om Admin är inloggad-->
+                                    @if ((bool)Session["IsLoggedIn"] && Session["username"].ToString() == "Admin")
+                                    {
+                                        <li><a href="/Admin/Index">Admin</a></li>
+                                    }
+                                <li>
+                                    <a class="page-scroll" href="/">Startsida</a>
+                                </li>
+                                <li>
+                                    <a href="/Search/Index">Sök efter ingredienser</a>
+                                </li>
+                                <li>
+                                    <a href="/Index/Kontakt">Kontakt</a>
+                                </li>
+                                <li>
+                                    <a href="/CreateRecipe/Index">Lägg till Recept</a>
+                                </li>
+                                <li>
+                                    <a class="page-scroll" href="/CreateAccount/Index">Skapa Konto</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <section>
+            <div class="row">
+
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+
+                    @RenderBody()
+                </div>
+            </div>
+        </section>
+    </header>
+    @*<footer class="foot">ReceptTips.SE © All Rights Reserved</footer>*@
+    <!-- Bootstrap - Menyn stängs vid klick -->
+    <script src="~/scripts/creative.js"></script>
+    <script src="~/scripts/JavaScript.js"></script>
+    <footer class="footer-distributed">
+
+        <div class="footer-right">
+
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="https://github.com/finbom86/ReceptTips.SE"><i class="fa fa-github"></i></a>
+
+        </div>
+
+        <div class="footer-left">
+
+            <p class="footer-links">
+                <a href="/Index/Index">Startsida</a>
+                ·
+                <a href="/Search/Index">Sök</a>
+                ·
+                <a href="/ReceptsMat/Index">Mat</a>
+                ·
+                <a href="/Recepts/Index">Drink</a>
+                ·
+                <a href="/Index/Kontakt">Kontakt</a>
+
+            </p>
+
+            <p>ReceptTips.se &copy; 2016</p>
+        </div>
+
+    </footer>
+
+
+</body>
+</html>

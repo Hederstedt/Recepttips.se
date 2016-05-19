@@ -1,0 +1,65 @@
+﻿@model ProjektHermods.Models.Recept
+
+@{
+    ViewBag.Title = "Details";
+    List<ProjektHermods.Models.Recept> recepies = ViewBag.Recepies;
+}
+
+<h2 style="color:white;">Receptinfo</h2>
+<div class="row">
+    <div class="col-lg-3" style="margin-top:5%;">
+        <img src="@Model.Picture" class="thumbnail" alt="Drinkar">
+        <br />
+        <br />
+        <p style="text-align:center;"><a href="/Recepts/Index" class="btn btn-primary" role="button">Tillbaka</a></p>
+    </div>      
+    <div class="col-lg-6">
+        <h1 style="text-align:left">@Model.Name</h1>
+        <h3 style="text-align:left">Ingredients</h3>
+        @foreach (var item in Model.Ingredients)
+        {
+            <ul>
+                <li style="text-align:left">@item.Name</li>
+            </ul>
+           
+        }
+        <h3 style="text-align:left">Recept</h3>
+        <p style="text-align:left">@Model.Info</p>
+        
+        <h3 style="text-align:left">Tillagningstid</h3>
+        <p style="text-align:left">@Model.Tid min</p>
+    </div>  
+    <br />
+    <br />
+    <div class="col-lg-3">
+         <div style="height:750px; overflow-x:auto;">
+            
+     @foreach(var item in recepies.Where(r => r.ChoosenTypes.Typ=="Dricka"))
+         {
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+            <div class="food-item" style="overflow: hidden;">
+               
+                   
+                <img src="@item.Picture" class="thumbnail" alt="">
+                <div class="caption">
+                    <p class="blacktext"><a href="/Recepts/Details/@item.Id" style="color:black !important;" role="button"><strong>@item.Name</strong></a></p>
+
+
+                    <br />
+                    <br />
+                    <p><a href="/Recepts/Details/@item.Id" class="btn btn-primary" role="button">Receptet</a></p>
+                    <i class="fa fa-clock-o lg" style="float:left; left:10px; font-size: 1em;" aria-hidden="true">@item.Tid min</i>
+
+                    
+
+                </div>
+            </div>
+        </div>
+            <br />
+            <br />
+         
+            <br />
+        }
+    </div>
+    </div>
+</div>

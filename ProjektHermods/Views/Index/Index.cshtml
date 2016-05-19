@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title="Index";
+   
+}
+
+<h3>Välkommen @if ((bool)Session["IsLoggedIn"])
+{ <span class="greentext"><strong>@Session["username"]</strong></span>} till <strong>ReceptTips.SE</strong>!</h3>
+<p>Vad önskar du idag?</p>
+
+<div>
+    <div class="row">
+        <div class="col-md-12 col-lg-6 col-sm-12 col-md-12 col-xs-12 img-list" >
+            <div>
+                <a href="/ReceptsMat/Index" class="classa" id="classa">
+                    <span class="text-content"><span>Mat</span></span>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-6 col-sm-12 col-md-12 col-xs-12 img-list" >
+            <div> 
+                <a href="/Recepts/Index" class="classb" id="classa">
+                    <span class="text-content"><span>Dryck</span></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<br />

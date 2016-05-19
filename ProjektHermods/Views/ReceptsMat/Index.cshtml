@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ProjektHermods.Models.Recept>
+
+@{
+    ViewBag.Title="Index";
+}
+
+<h1 class="txtshadow">Recept</h1>
+
+@*<div class="jumbotron" style="background-image:url('http://www.cityofindia.se/bilder/olika_ratter.jpg');background-size:cover;" alt="">
+        <div class="container">
+            <h1><span style="color:white;">Mat</span></h1>
+            <p style="color:white;">Välkommen till ReceptTips Matsida!</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+        </div>
+    </div>*@
+
+            <div id="myCarousel" class="carousel slide">
+                <div class="carousel-inner">
+                    <div class="item active"> <img class="res" src="~/img/foodc1.png"> <div class="container"> <div class="carousel-caption"> <h4 class="txtshadow">Vad sägs om asiatiskt ikväll?</h4> </div> </div> </div>
+                    <div class="item">
+                        <img src="~/img/foodc2.png" alt=""> <div class="container">
+                            <div class="carousel-caption">
+                                <h4 class="txtshadow">eller vegetariskt?</h4>
+
+                            </div>
+                        </div>
+                    </div> <div class="item">
+                        <img src="~/img/foodc3.png" alt=""> <div class="container">
+                            <div class="carousel-caption">
+                                <h4 class="txtshadow" style="float:left;">...lite kött till grönsakerna?</h4>
+
+                            </div>
+                        </div>
+                    </div>
+                </div> <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a> <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+            </div><!-- /.carousel -->
+     
+            
+            <br />
+            <hr />
+            <br />
+
+<div class="row">                            
+    @foreach (var item in Model.Where(r => r.ChoosenTypes.Typ == "Mat"))
+    {
+        if (item.OkRecept)
+        {
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-centered" style="border:none!important; ">
+            <div class="food-item" style="overflow: hidden;"> 
+                <a href="/ReceptsMat/Details/@item.Id"><img src="@item.Picture" class="thumbnail" alt=""></a>
+                    <div class="caption">
+                        <p class="blacktext"><a href="/ReceptsMat/Details/@item.Id" style="color:black !important;" role="button"><strong>@item.Name</strong></a></p>
+                       <small><strong>Ingredienser:</strong></small><br />
+                     @foreach (var x in item.Ingredients)
+                     {
+                                                   <small>@x.Name</small>
+                     }
+                        <br />
+                        <br />
+                        <p><a href="/ReceptsMat/Details/@item.Id" class="btn btn-primary" role="button">Receptet</a></p>
+                            <i class="fa fa-clock-o lg"  style="float:left; left:10px; font-size: 2em;"aria-hidden="true">@item.Tid min</i>
+                          
+                            
+
+                        </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+

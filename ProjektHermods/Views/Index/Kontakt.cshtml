@@ -1,0 +1,109 @@
+﻿
+
+
+<h2 style="text-align:center;">Kontakta Oss!</h2>
+<br />
+<div class="col-lg-6 col-mg-6 col-sm-6 col-xs-12">
+    <form class="form-horizontal">
+        <fieldset>
+            <div class="form-group">
+                <label for="inputPassword" class="col-lg-2 control-label">Namn</label>
+                <div class="col-lg-10">
+                    @if (ViewBag.nameVariabel == null)
+                    {
+                        <input type="text" class="form-control standardform" placeholder="text" name="inputText">
+                    }
+                    else
+                    {
+                        <input type="text" class="form-control standardform" placeholder="text" name="inputText"value="@ViewBag.nameVariabel">
+                    }
+
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+                <div class="col-lg-10">
+                    @if (ViewBag.nameEmail == null)
+                    {
+                        <input type="text" class="form-control" id="inputEmail" placeholder="Email" name="inputEmail">
+                    }
+                    else
+                    {
+                        <input type="text" class="form-control" id="inputEmail" placeholder="Email" name="inputEmail" value="@ViewBag.nameEmail">
+                    }
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="select" class="col-lg-2 control-label">Vad</label>
+                <div class="col-lg-10">
+                    <select class="form-control" id="select" name="selectTopic">
+                        <option></option>
+                        <option>Jag gillar inte detta recept</option>
+                        <option>Får inte recepten att fungera</option>
+                        <option>Egen Fråga</option>
+                        <option>Inget av ovanstående</option>
+                        <option>Annat</option>
+                    </select>
+                    <br>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="textArea" class="col-lg-2 control-label">Fråga</label>
+                <div class="col-lg-10">
+                    @if (ViewBag.nameTextArea == null)
+                    {
+                        <textarea class="form-control" rows="3" id="textArea" name="inputTextArea"></textarea>
+                    }
+                    else
+                    {
+                        <textarea class="form-control" rows="3" id="textArea" name="inputTextArea" >@ViewBag.nameTextArea</textarea>
+                    }
+
+                    <span class="help-block"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <input class="standardknapp" type="submit" value="Skicka" name="buttonAdd" />
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+
+<div class="col-lg-6 col-mg-6 col-sm-6 col-xs-12">
+    <style>
+        #map {
+            width: 600px;
+            height: 400px;
+        }
+    </style>
+
+    <div id="map"></div>
+    <script>
+        function initMap() {
+            var mapDiv = document.getElementById('map');
+            var map = new google.maps.Map(mapDiv, {
+                center: { lat: 57.683118, lng: 11.999941 },
+                zoom: 8
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+            async defer></script>
+</div>
+
+    @if (ViewBag.Felmeddelande != null)
+    {
+        string[] input = ViewBag.Felmeddelande.Split('!');
+        for (int i = 0; i < input.Count(); i++)
+        {
+            <p>@input[i]</p>
+        }
+
+    }
